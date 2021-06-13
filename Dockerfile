@@ -10,7 +10,7 @@ ARG user=docker
 #ARG workdir=workspace
 #some large package should copy to /home/${user}/$(local_package}
 ARG local_package=utils_thisbuild
-ARG github=cei_pytorch_vc
+ARG github=cei_pytorch_vc_tacotron
 #vscode server 1.54.2
 ARG vscommit=fd6f3bce6709b121a895d042d343d71f317d74e7
 
@@ -157,7 +157,8 @@ RUN /home/${user}/.local/bin/jupyter notebook --generate-config;\
     sed -ir "s/#c\.NotebookApp\.notebook_dir.*/c\.NotebookApp\.notebook_dir = \'\/home\/docker\/${github}\'/" ~/.jupyter/jupyter_notebook_config.py;\
     mkdir -p ~/.jupyter/nbconfig;\
     echo ${JUCELL} > ~/.jupyter/nbconfig/notebook.json        
- 
+
+# docker build xxx:ooo --build-arg SSH_KEY="$(cat ~/.ssh/id_rsa)" 
 ADD id_rsa.pub /home/${user}/.ssh/authorized_keys
 
 ENTRYPOINT sudo service ssh restart && zsh
