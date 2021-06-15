@@ -1,6 +1,7 @@
 #FROM  pytorch/pytorch:1.5.1-cuda10.1-cudnn7-runtime
 FROM pytorch/pytorch:1.3-cuda10.1-cudnn7-devel
 #FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+#FROM pytorch/pytorch:1.7.1-cuda11.0-cudnn8-devel
 MAINTAINER alvin
 
 # account info (pwd is not necessary for this config)
@@ -76,10 +77,11 @@ RUN cd ~/ ; mkdir .ssh ;\
     sudo chsh -s $(which zsh) ${user}
 
 RUN sudo apt-get -y install ipython ipython-notebook
+#RUN sudo apt-get -y install python3-ipython
 
 #RUN sudo add-apt-repository ppa:deadsnakes/ppa -y ;\
 #    sudo apt-get update -y; \
-#    sudo apt-get autoremove python3.5 -y; \
+#    sudo apt-get autoremove python3.8 -y; \
 #    sudo apt-get install python3.6 -y;\
 #    sudo apt-get install python3-pip -y;\
 #    sudo apt-get install python3.6-dev -y;\
@@ -88,7 +90,7 @@ RUN sudo apt-get -y install ipython ipython-notebook
 #    sudo unlink python; sudo ln -s python3.6 python
 
 
-# original image pytorch 1.3 --> downgrad to 0.3.1 
+# original image pytorch 1.3 --> downgrad to 0.4.0 beacuse r9y9 rnn pad_sequence not work on 0.3.1
 # tensorflow-gpu 1.4
 RUN python3 -m pip install --user pip==21.0.1;\
     python3 -m pip install --user numpy==1.16.0;\
@@ -99,8 +101,10 @@ RUN python3 -m pip install --user pip==21.0.1;\
     python3 -m pip install --user pycnnum==1.0.1;\
     python3 -m pip install --user gdown==3.12.2;\
     python3 -m pip install --user tensorflow-gpu==1.14.0;\
-    #python3 -m pip install --user torch==0.3.1;\
-    python3 -m pip install --user http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl;\
+    python3 -m pip install --user torch==1.7.0;\
+    python3 -m pip install --user univoc==0.2.1;\
+    python3 -m pip install --user tacotron==0.1.1;\
+    #python3 -m pip install --user http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl;\
     python3 -m pip install --user lws==1.2.7;\
     python3 -m pip install --user unidecode==1.2.0;\
     python3 -m pip install --user inflect==5.3.0;\
