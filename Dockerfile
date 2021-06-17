@@ -115,8 +115,13 @@ RUN python3 -m pip install --user pip==21.0.1;\
     python3 -m pip install --user librosa==0.8.0;\
     python3 -m pip install --user matplotlib==3.3.4;\
     python3 -m pip install --user docopt==0.6.2;\
+    # tacotron train necessary package
+    python3 -m pip install --user tensorboard==1.15.0;\
+    python3 -m pip install --user hydra-colorlog==1.1.0;\
+    python3 -m pip install --user pyloudnorm==0.1.0;\
     # project git clone
     git clone https://github.com/AlvinYC/${github}.git /home/${user}/${github};\
+    git clone https://github.com/bshall/UniversalVocoding.git /home/${user}/UniversalVocoding;\
     # fix pycnnum issue, ref: https://github.com/zcold/pycnnum/issues/4
     sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
     /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py;\
