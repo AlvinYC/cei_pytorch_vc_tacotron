@@ -14,7 +14,7 @@ from docopt import docopt
 # Use text & audio modules from existing Tacotron implementation.
 import sys
 from os.path import dirname, join
-tacotron_lib_dir = join(dirname(__file__), "lib", "tacotron")
+tacotron_lib_dir = join("./", "keithito_tacotron")
 sys.path.append(tacotron_lib_dir)
 from text import text_to_sequence, symbols
 from util import audio
